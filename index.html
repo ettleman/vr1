@@ -1,34 +1,19 @@
-<html>
-  <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js">
-    </script><script src="https://unpkg.com/aframe-controller-cursor-component@0.2.7/dist/aframe-controller-cursor-component.min.js"></script> 
-<script>
-  AFRAME.registerComponent('change-color-on-hover', {
-    schema: {
-      color: {default: 'red'}
-    },
-
-    init: function () {
-      var data = this.data;
-      var el = this.el;  // <a-box>
-      var defaultColor = el.getAttribute('material').color;
-
-      el.addEventListener('mouseenter', function () {
-        el.setAttribute('color', data.color);
-      });
-
-      el.addEventListener('mouseleave', function () {
-        el.setAttribute('color', defaultColor);
-      });
-    }
-  });
-</script>
-  </head>
+<head>
+  <title>Most Basic Super-Hands Example</title>
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script> 
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script> 
+  <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script> 
+</head>
+ 
 <body>
   <a-scene>
-    <a-box color="#EF2D5E" position="0 1 -4" change-color-on-hover="color: blue"></a-box>
-
-    <a-camera><a-cursor></a-cursor></a-camera>
+    <a-assets></a-assets>
+    <a-entity>
+      <a-camera></a-camera>
+      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="left"></a-entity>
+      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="right"></a-entity>
+    </a-entity>
+    <!-- hover & drag-drop won't have any obvious effect without some additional event handlers or components. See the examples page for more -->
+    <a-box hoverable grabbable stretchable draggable dropppable color="blue" position="0 0 -1"></a-box>
   </a-scene>
 </body>
-</html>
